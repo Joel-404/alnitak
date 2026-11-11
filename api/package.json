@@ -1,8 +1,8 @@
 {
-  "name": "api",
+  "name": "alnitak-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "REST API for Alnitak job application tracker",
+  "main": "src/server.js",
   "directories": {
     "test": "tests"
   },
@@ -12,8 +12,8 @@
     "dev": "node --watch src/server.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Joel Mina Orejuela",
+  "license": "MIT",
   "type": "module",
   "dependencies": {
     "express": "^5.3.0"

@@ -8,12 +8,6 @@ router.get('/', (req, res) => {
         timestamp: new Date().toISOString(),
     
      })
-     if(!res.status(200)){
-        res.status(500).json({
-            status:"error",
-            message: "Internal Server Error"
-        })
-     }
     });
     export default router
    
