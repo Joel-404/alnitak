@@ -33,6 +33,27 @@ alnitak/
 ├── frontend/            Web client
 └── docs/                Diagrams and technical documentation
 ```
+## Local setup
+
+### Database
+
+Requires PostgreSQL. Create a dedicated user and database:
+
+```sql
+CREATE ROLE alnitak_app WITH LOGIN PASSWORD 'your_password';
+CREATE DATABASE alnitak OWNER alnitak_app;
+```
+
+### API
+
+```bash
+cd api
+cp .env.example .env   # then fill in DATABASE_URL
+npm install
+npm run dev
+```
+
+Health check: `GET http://localhost:3000/health`
 
 ## License
 
