@@ -1,4 +1,4 @@
-const required = ['PORT'];
+const required = ['PORT', 'DATABASE_URL'];
 
 const missing = required.filter((key) => !process.env[key]);
 if (missing.length > 0) {
@@ -8,4 +8,5 @@ if (missing.length > 0) {
 export const env = {
   nodeEnv: process.env.NODE_ENV ?? 'development',
   port: Number(process.env.PORT),
+  databaseUrl: process.env.DATABASE_URL,
 };
