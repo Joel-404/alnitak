@@ -73,6 +73,8 @@ CREATE ROLE alnitak_app WITH LOGIN PASSWORD 'your_password';
 CREATE DATABASE alnitak OWNER alnitak_app;
 ```
 
+See [docs/database.md](docs/database.md) for the schema diagram and constraints.
+
 ### API
 
 ```bash
