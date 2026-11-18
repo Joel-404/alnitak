@@ -16,6 +16,35 @@ In development. Current phase: project foundation.
 - **AI:** Claude API
 - **Frontend:** HTML, CSS, JavaScript
 
+## Architecture
+
+```mermaid
+flowchart LR
+    user([User])
+
+    subgraph client [Frontend]
+        web[Web client<br/>HTML, CSS, JS]
+    end
+
+    subgraph backend [Backend]
+        api[REST API<br/>Node.js + Express]
+        worker[Background worker<br/>Spring Boot]
+    end
+
+    claude[Claude API]
+    db[(PostgreSQL)]
+    mail[Email service]
+
+    user --> web
+    web -- HTTPS / JSON --> api
+    api -- CV analysis --> claude
+    api -- SQL --> db
+    worker -- SQL --> db
+    worker -- reminders, reports --> mail
+```
+
+The API handles authentication, applications and AI analysis. The worker runs scheduled jobs (reminders and weekly reports) and shares the same database, so it needs no API of its own. Currently implemented: REST API and PostgreSQL.
+
 ## Project structure
 
 ```
