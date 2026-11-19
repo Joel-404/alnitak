@@ -6,7 +6,7 @@ Named after the star in Orion's Belt, one of the first references used to naviga
 
 ## Status
 
-In development. Current phase: project foundation.
+In development. Phase 1 (foundation) complete; next: authentication.
 
 ## Tech stack
 
@@ -85,6 +85,17 @@ npm run dev
 ```
 
 Health check: `GET http://localhost:3000/health`
+
+## Challenges
+
+Real problems found while building the project and how they were solved.
+
+- **WSL could not reach PostgreSQL on Windows.** The API failed with `Connection refused`. `ip -4 addr` showed a `172.x` address: WSL was in NAT mode, so `localhost` did not point to Windows. Switching WSL to mirrored networking fixed it, verified with `psql` before touching any code.
+- **A silent typo broke the database connection.** `/health` reported the database as unreachable while PostgreSQL was running. Logging the real error revealed `client password must be a string`. Tracing the value step by step (environment config, then the pool options) found a misspelled property: JavaScript returned `undefined` without any error, and the driver fell back to default credentials. The error logging stayed in place permanently.
+- **The wrong Node.js runtime.** `npm run dev` looked for `C:\Windows\src\server.js`: WSL was using the Windows Node.js inherited through the `PATH`. Installing Node.js inside Linux with nvm fixed it.
+- **Windows line endings.** Files edited in Windows mode were committed with CRLF. A `.gitattributes` rule plus `git add --renormalize` normalized the whole repository to LF and prevents it from happening again.
+
+See [docs/decisions.md](docs/decisions.md) for the technical decisions behind the project.
 
 ## License
 
