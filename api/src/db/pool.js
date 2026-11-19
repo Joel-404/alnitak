@@ -4,7 +4,7 @@ import { env } from '../config/env.js';
 const { Pool } = pg;
 
 export const pool = new Pool({
-    connectionString: env.databaseUrl,
+  connectionString: env.databaseUrl,
   connectionTimeoutMillis: 5000,
 });
 

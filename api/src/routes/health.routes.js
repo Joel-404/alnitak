@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
 
   try {
     await pool.query('SELECT 1');
-  }  catch (err) {
+  } catch (err) {
     console.error('Health check database error:', err.message);
     database = 'unreachable';
   }
